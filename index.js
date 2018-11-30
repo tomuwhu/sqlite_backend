@@ -28,7 +28,7 @@ app.get(/list/, (req, res) => {
 app.post(/get/, (req, res) => {
     let o = {}
     db.each(
-        `SELECT * FROM data WHERE id='${ req.body._id }'`,
+        `SELECT * FROM data WHERE id=${ req.body._id }`,
         (err, row) => {
             o = JSON.parse(row.json)
             o._id = row.id
