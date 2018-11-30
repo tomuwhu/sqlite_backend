@@ -30,7 +30,7 @@ app.post(/get/, (req, res) => {
     db.each(
         `SELECT * FROM data WHERE id='${ req.body._id }'`,
         (err, row) => {
-            o = JSON.parse(row[0].json)
+            o = JSON.parse(row.json)
             o._id = row.id
         },
         (err, n) => {
