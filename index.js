@@ -25,6 +25,21 @@ app.get(/list/, (req, res) => {
     )
 })
 
+app.post(/get/, (req, res) => {
+    let o = {}
+    db.each(
+        `SELECT * FROM data WHERE id='${ req.body._id }'`,
+        (err, row) => {
+            o = JSON.parse(row[0].json)
+            o._id = row.id
+        },
+        (err, n) => {
+            res.send(o)
+            logger ? console.log(t) : false
+        }
+    )
+})
+
 app.post(/save/, (req, res) => {
     logger ? console.log(req.body) : 1
     if (req.body._id) {
