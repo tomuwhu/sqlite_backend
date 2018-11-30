@@ -34,7 +34,7 @@ app.post(/get/, (req, res) => {
             o._id = row.id
         },
         (err, n) => {
-            res.send(o)
+            n ? res.send(o) : res.send({_id: ''})
             logger ? console.log(t) : false
         }
     )
